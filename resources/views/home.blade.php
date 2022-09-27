@@ -1,21 +1,16 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Hello Bulma!</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
-</head>
-<body>
-<section class="section">
-    <div class="container">
-        <h1 class="title">
-            Hello World
-        </h1>
-        <p class="subtitle">
-            My first website with <strong>Bulma</strong>!
-        </p>
-    </div>
-</section>
-</body>
-</html>
+@extends('partials.layout')
+@section('title', 'Twitter')
+@section('content')
+        <div class="card">
+            <div class="card-body">
+                <form action="/tweets" method="POST">
+                    @csrf
+                    <textarea placeholder="Whats happening?" class="textarea" name="content"></textarea>
+                    <input class="button is-primary is-rounded my-2" type="submit" value="Tweet">
+                </form>
+            </div>
+        </div>
+        @foreach($tweets as $tweet)
+            @include('partials.tweet')
+        @endforeach
+@endsection
