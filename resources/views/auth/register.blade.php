@@ -22,6 +22,16 @@
                         </div>
 
                         <div class="field">
+                            <label class="label">{{ __('Username') }}</label>
+                            <div class="control">
+                                <input class="input @error('username') is-danger @enderror" type="text" name="username" value="{{ old('username') }}" required autocomplete="username" autofocus>
+                                @error('username')
+                                <p class="help is-danger">{{ $message }}</p>
+                                @enderror
+                            </div>
+                        </div>
+
+                        <div class="field">
                             <label class="label">{{ __('Email Address') }}</label>
                             <div class="control">
                                 <input class="input @error('email') is-danger @enderror" type="text" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>

@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use Illuminate\Http\Request;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 class HomeController extends Controller
 {
@@ -21,8 +23,11 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
-    public function index()
+    public function index($username)
     {
-        return view('home');
+        $user = User::where('username', $username)->firstOrFail();
+        $tweets = $user->tweets()->latest()->paginate(10);
+
+        return view('user', compact('tweets', 'user'));
     }
 }

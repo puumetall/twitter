@@ -17,6 +17,7 @@ class DatabaseSeeder extends Seeder
     {
         $user = new User();
         $user->name = env('DEFAULT_USER_NAME', 'User McUser');
+        $user->username = env('DEFAULT_USER_USERNAME', 'mcuser');
         $user->email = env('DEFAULT_USER_EMAIL', 'user@email.com');
         $user->password = bcrypt(env('DEFAULT_USER_PASSWORD', 'password'));
         $user->save();

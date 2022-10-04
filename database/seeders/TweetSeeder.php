@@ -18,6 +18,7 @@ class TweetSeeder extends Seeder
     {
         $users = User::all();
         $tweets = Tweet::factory(100)->make();
+        $tweets = $tweets->sortBy('created_at');
         foreach($tweets as $tweet){
             $tweet->user_id = $users->random()->id;
             $tweet->save();

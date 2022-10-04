@@ -13,5 +13,5 @@
         @foreach($tweets as $tweet)
             @include('partials.tweet')
         @endforeach
-        {{$tweets->links('partials.paginate')}}
+        {{$tweets->links()}}
 @endsection

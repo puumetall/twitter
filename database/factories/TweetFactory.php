@@ -16,8 +16,15 @@ class TweetFactory extends Factory
      */
     public function definition()
     {
+        $created = fake()->dateTimeBetween('-10 years', 'now');
+        $updated = fake()->dateTimeBetween($created, 'now');
+        if(rand(0,4)) {
+            $updated = $created;
+        }
         return [
-            'content' => fake()->text(280)
+            'content' => fake()->text(280),
+            'created_at' => $created,
+            'updated_at' => $updated,
         ];
     }
 }
