@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use App\Models\User;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -14,7 +15,12 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-
+        $user = new User();
+        $user->name = env('DEFAULT_USER_NAME', 'User McUser');
+        $user->email = env('DEFAULT_USER_EMAIL', 'user@email.com');
+        $user->password = bcrypt(env('DEFAULT_USER_PASSWORD', 'password'));
+        $user->save();
+        $this->call(UserSeeder::class);
         $this->call(TweetSeeder::class);
         // \App\Models\User::factory(10)->create();
 

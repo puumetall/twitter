@@ -17,3 +17,5 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [PublicController::class, 'home']);
 Route::post('/tweets', [TweetController::class, 'store']);
+
+Auth::routes();

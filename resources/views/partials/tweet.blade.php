@@ -12,7 +12,7 @@
                 </figure>
             </div>
             <div class="media-content">
-                <p class="title is-4">John Smith</p>
+                <p class="title is-4">{{$tweet->user->name}}</p>
                 <p class="subtitle is-6">@johnsmith</p>
             </div>
         </div>

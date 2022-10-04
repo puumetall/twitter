@@ -16,6 +16,7 @@ return new class extends Migration
         Schema::create('tweets', function (Blueprint $table) {
             $table->id();
             $table->string('content');
+            $table->foreignIdFor(\App\Models\User::class)->constrained()->cascadeOnDelete();
             $table->timestamps();
         });
     }

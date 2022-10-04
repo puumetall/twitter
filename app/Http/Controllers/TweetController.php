@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Tweet;
 use App\Http\Requests\StoreTweetRequest;
 use App\Http\Requests\UpdateTweetRequest;
+use Illuminate\Support\Facades\Auth;
 
 class TweetController extends Controller
 {
@@ -38,6 +39,8 @@ class TweetController extends Controller
     {
         $tweet = new Tweet();
         $tweet->content = $request->input('content');
+        //$tweet->user_id = Auth::user()->id;
+        $tweet->user()->associate(Auth::user()->id);
         $tweet->save();
         return redirect('/');
     }

@@ -2,12 +2,11 @@
 
 namespace Database\Seeders;
 
-use App\Models\Tweet;
 use App\Models\User;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
-class TweetSeeder extends Seeder
+class UserSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -16,11 +15,6 @@ class TweetSeeder extends Seeder
      */
     public function run()
     {
-        $users = User::all();
-        $tweets = Tweet::factory(100)->make();
-        foreach($tweets as $tweet){
-            $tweet->user_id = $users->random()->id;
-            $tweet->save();
-        }
+        User::factory(10)->create();
     }
 }
