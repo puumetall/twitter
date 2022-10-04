@@ -15,7 +15,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', [PublicController::class, 'home'])->middleware('verified');
+Route::get('/', [PublicController::class, 'home']);
 Route::post('/tweets', [TweetController::class, 'store']);
 
-Auth::routes(['verify'=> true]);
+Auth::routes();
