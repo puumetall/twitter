@@ -25,4 +25,12 @@
             <time datetime="2016-1-1">{{$tweet->created_at->diffForHumans()}}</time>
         </div>
     </div>
+    <footer class="card-footer">
+        @unless(isset($reply) && $reply === false)
+            <a href="/tweet/{{$tweet->id}}" class="card-footer-item">Reply</a>
+        @endunless
+        <a href="#" class="card-footer-item">Like</a>
+        <a href="#" class="card-footer-item">Retweet</a>
+    </footer>
 </div>
+

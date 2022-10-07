@@ -2,12 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Reply;
+use App\Http\Requests\StoreReplyRequest;
+use App\Http\Requests\UpdateReplyRequest;
 use App\Models\Tweet;
-use App\Http\Requests\StoreTweetRequest;
-use App\Http\Requests\UpdateTweetRequest;
 use Illuminate\Support\Facades\Auth;
 
-class TweetController extends Controller
+class ReplyController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -32,37 +33,37 @@ class TweetController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \App\Http\Requests\StoreTweetRequest  $request
+     * @param  \App\Http\Requests\StoreReplyRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreTweetRequest $request)
+    public function store(StoreReplyRequest $request, Tweet $tweet)
     {
-        $tweet = new Tweet();
-        $tweet->content = $request->input('content');
-        //$tweet->user_id = Auth::user()->id;
-        $tweet->user()->associate(Auth::user()->id);
-        $tweet->save();
-        return redirect('/');
+        $reply = new Reply();
+        $reply->content = $request->validated('content');
+        $reply->tweet()->associate($tweet);
+        $reply->user()->associate(Auth::user());
+        $reply->save();
+        return redirect()->back();
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Tweet  $tweet
+     * @param  \App\Models\Reply  $reply
      * @return \Illuminate\Http\Response
      */
-    public function show(Tweet $tweet)
+    public function show(Reply $reply)
     {
-        return view('show', compact('tweet'));
+        //
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Tweet  $tweet
+     * @param  \App\Models\Reply  $reply
      * @return \Illuminate\Http\Response
      */
-    public function edit(Tweet $tweet)
+    public function edit(Reply $reply)
     {
         //
     }
@@ -70,11 +71,11 @@ class TweetController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \App\Http\Requests\UpdateTweetRequest  $request
-     * @param  \App\Models\Tweet  $tweet
+     * @param  \App\Http\Requests\UpdateReplyRequest  $request
+     * @param  \App\Models\Reply  $reply
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateTweetRequest $request, Tweet $tweet)
+    public function update(UpdateReplyRequest $request, Reply $reply)
     {
         //
     }
@@ -82,10 +83,10 @@ class TweetController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Tweet  $tweet
+     * @param  \App\Models\Reply  $reply
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Tweet $tweet)
+    public function destroy(Reply $reply)
     {
         //
     }

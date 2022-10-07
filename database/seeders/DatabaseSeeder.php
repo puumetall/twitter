@@ -23,6 +23,8 @@ class DatabaseSeeder extends Seeder
         $user->save();
         $this->call(UserSeeder::class);
         $this->call(TweetSeeder::class);
+        $this->call(ReplySeeder::class);
+
         // \App\Models\User::factory(10)->create();
 
         // \App\Models\User::factory()->create([
