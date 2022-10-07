@@ -11,7 +11,11 @@
             </div>
         </div>
         @foreach($tweets as $tweet)
-            @include('partials.tweet')
+            @if($tweet->isRetweet)
+                @include('partials.retweet')
+            @else
+                @include('partials.tweet')
+            @endif
         @endforeach
         {{$tweets->links()}}
 @endsection

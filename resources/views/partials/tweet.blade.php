@@ -27,10 +27,10 @@
     </div>
     <footer class="card-footer">
         @unless(isset($reply) && $reply === false)
-            <a href="/tweet/{{$tweet->id}}" class="card-footer-item">Reply</a>
+            <a href="/tweet/{{$tweet->id}}" class="card-footer-item">Reply {{$tweet->replies()->count()}}</a>
         @endunless
-        <a href="#" class="card-footer-item">Like</a>
-        <a href="#" class="card-footer-item">Retweet</a>
+        <a href="/tweet/{{$tweet->id}}/like" class="card-footer-item">Like {{$tweet->likes()->count()}}</a>
+        <a href="/tweet/{{$tweet->id}}/retweet" class="card-footer-item">Retweet</a>
     </footer>
 </div>
 

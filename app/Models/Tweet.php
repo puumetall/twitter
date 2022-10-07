@@ -16,4 +16,16 @@ class Tweet extends Model
     public function replies(){
         return $this->hasMany(Reply::class);
     }
+
+    public function likes(){
+        return $this->hasMany(Like::class);
+    }
+
+    public function getIsRetweetAttribute(){
+        return $this->tweet_id !== null;
+    }
+
+    public function retweet(){
+        return $this->hasOne(Tweet::class, 'id', 'tweet_id');
+    }
 }
