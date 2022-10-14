@@ -9,6 +9,15 @@
             </figure>
         </div>
         <div class="card-content">
+            @unless($user->id === Auth::user()->id)
+            <a href="/user/{{$user->username}}/follow" class="button is-primary is-pulled-right">
+                @if($user->AuthIsFollowing)
+                    Unfollow
+                @else
+                    Follow
+                @endif
+            </a>
+            @endunless
             <div class="media">
                 <div class="media-left" style="margin-top:-4em">
                     <figure class="image is-96x96">
@@ -23,6 +32,11 @@
 
             <div class="content">
                 {{$user->profile->bio}}
+                <p><b>Joined:</b> {{$user->created_at->diffForHumans()}}</p>
+                <p>
+                    <b>Followers:</b> {{$user->followers()->count()}}
+                    <b>Following:</b> {{$user->followees()->count()}}
+                </p>
             </div>
         </div>
     </div>

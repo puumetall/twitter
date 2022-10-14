@@ -22,6 +22,7 @@ class DatabaseSeeder extends Seeder
         $user->password = bcrypt(env('DEFAULT_USER_PASSWORD', 'password'));
         $user->save();
         $this->call(UserSeeder::class);
+        $this->call(FollowerSeeder::class);
         $this->call(ProfileSeeder::class);
         $this->call(TweetSeeder::class);
         $this->call(ReplySeeder::class);

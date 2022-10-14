@@ -8,12 +8,12 @@
                     <p class="card-header-title">Profile</p>
                 </header>
                 <div class="card-content">
-                    <form method="POST" action="/profile">
+                    <form method="POST" action="/profile" enctype="multipart/form-data">
                         @csrf
                         <div class="field">
                             <label class="label">Bio</label>
                             <div class="control">
-                                <textarea class="textarea @error('bio') is-danger @enderror" name="bio">{{ old('bio') ?? Auth::user()->profile->bio }}</textarea>
+                                <textarea class="textarea @error('bio') is-danger @enderror" name="bio">{{ old('bio') ?? Auth::user()->profile->bio ?? ''}}</textarea>
                                 @error('bio')
                                 <p class="help is-danger">{{ $message }}</p>
                                 @enderror
@@ -42,7 +42,7 @@
                         <div class="field">
                             <label class="label">Theme Color</label>
                             <div class="control">
-                                <input class="input @error('color') is-danger @enderror" type="color" name="color" value="{{old('color') ?? Auth::user()->profile->color}}">
+                                <input class="input @error('color') is-danger @enderror" type="color" name="color" value="{{old('color') ?? Auth::user()->profile->color ?? ''}}">
                                 @error('color')
                                 <p class="help is-danger">{{ $message }}</p>
                                 @enderror
