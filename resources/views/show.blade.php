@@ -34,6 +34,9 @@
                         <time datetime="2016-1-1">{{$reply->created_at->diffForHumans()}}</time>
                     </div>
                 </div>
+                @if($reply->user->id === Auth::user()->id)
+                    <a href="/reply/{{$reply->id}}/delete" class="card-footer-item has-text-danger">Delete reply</a>
+                @endif
             </div>
         @endforeach
 @endsection

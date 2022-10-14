@@ -88,6 +88,9 @@ class ReplyController extends Controller
      */
     public function destroy(Reply $reply)
     {
-        //
+        if($reply->user->id = Auth::user()->id){
+            $reply->delete();
+        }
+        return redirect()->back();
     }
 }

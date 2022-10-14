@@ -30,5 +30,6 @@ Route::get('/tweet/{tweet}/retweet', [TweetController::class, 'retweet']);
 Route::get('/profile', [ProfileController::class, 'edit']);
 Route::post('/profile', [ProfileController::class, 'update']);
 Route::get('/tweet/{tweet}/delete', [TweetController::class, 'destroy']);
+Route::get('/reply/{reply}/delete', [ReplyController::class, 'destroy']);
 
 Auth::routes();
