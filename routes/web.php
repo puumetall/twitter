@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\LikeController;
+use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\PublicController;
 use App\Http\Controllers\ReplyController;
 use App\Http\Controllers\TweetController;
@@ -19,12 +20,13 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', [PublicController::class, 'home']);
-Route::post('/tweets', [TweetController::class, 'store']);
+Route::post('/tweets', [TweetController::class, 'store'])->middleware('auth');
 Route::get('/user/{username}', [HomeController::class, 'index']);
 Route::get('/tweet/{tweet}', [TweetController::class, 'show']);
 Route::post('/tweet/{tweet}', [ReplyController::class, 'store']);
 Route::get('/tweet/{tweet}/like', [LikeController::class, 'like']);
 Route::get('/tweet/{tweet}/retweet', [TweetController::class, 'retweet']);
-
+Route::get('/profile', [ProfileController::class, 'edit']);
+Route::post('/profile', [ProfileController::class, 'update']);
 
 Auth::routes();

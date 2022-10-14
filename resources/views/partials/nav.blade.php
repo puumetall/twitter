@@ -37,7 +37,9 @@
                     </a>
 
                     <div class="navbar-dropdown">
-
+                        <a href="/profile" class="navbar-item">
+                            Profile
+                        </a>
                         <hr class="navbar-divider">
                         <a class="navbar-item" onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
