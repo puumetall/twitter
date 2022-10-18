@@ -27,6 +27,7 @@ class DatabaseSeeder extends Seeder
         $this->call(TweetSeeder::class);
         $this->call(ReplySeeder::class);
         $this->call(LikeSeeder::class);
+        $this->call(TagSeeder::class);
 
 
         // \App\Models\User::factory(10)->create();

@@ -28,4 +28,12 @@ class Tweet extends Model
     public function retweet(){
         return $this->hasOne(Tweet::class, 'id', 'tweet_id');
     }
+    public function setContentAttribute($value){
+
+        $value = preg_replace('/#\w+/', '', $value);
+        $this->attributes['content'] = trim($value);
+    }
+    public function tags(){
+        return $this->belongsToMany(Tag::class);
+    }
 }

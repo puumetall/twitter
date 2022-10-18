@@ -5,6 +5,7 @@ use App\Http\Controllers\LikeController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\PublicController;
 use App\Http\Controllers\ReplyController;
+use App\Http\Controllers\TagController;
 use App\Http\Controllers\TweetController;
 use Illuminate\Support\Facades\Route;
 
@@ -31,5 +32,5 @@ Route::get('/profile', [ProfileController::class, 'edit']);
 Route::post('/profile', [ProfileController::class, 'update']);
 Route::get('/tweet/{tweet}/delete', [TweetController::class, 'destroy']);
 Route::get('/reply/{reply}/delete', [ReplyController::class, 'destroy']);
-
+Route::get('/tag/{tag}', [TagController::class, 'index']);
 Auth::routes();

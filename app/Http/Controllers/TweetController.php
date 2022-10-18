@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Tag;
 use App\Models\Tweet;
 use App\Http\Requests\StoreTweetRequest;
 use App\Http\Requests\UpdateTweetRequest;
@@ -42,6 +43,17 @@ class TweetController extends Controller
         //$tweet->user_id = Auth::user()->id;
         $tweet->user()->associate(Auth::user()->id);
         $tweet->save();
+        preg_match_all('/#\w+/', $request->input('content'), $tags);
+        foreach($tags[0] as $tag){
+            $tag = str_replace('#', '', $tag);
+            $tagModel = Tag::where('name', $tag)->first();
+            if(!$tagModel){
+                $tagModel = new Tag();
+                $tagModel->name = $tag;
+                $tagModel->save();
+            }
+            $tweet->tags()->attach($tagModel);
+        }
         return redirect('/');
     }
 
