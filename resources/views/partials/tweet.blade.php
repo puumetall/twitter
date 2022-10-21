@@ -20,7 +20,9 @@
         </a>
         <div class="content">
             {{$tweet->content}}
-            <a href="/tag/{{$tag->id}}"># {{$tweet->tag->name}}</a>
+            @foreach($tweet->tags as $tag)
+                <a href="/tag/{{$tag->id}}">#{{$tag->name}}</a>
+            @endforeach
             <br>
             <time datetime="2016-1-1">{{$tweet->created_at->diffForHumans()}}</time>
         </div>

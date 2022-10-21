@@ -17,7 +17,7 @@ class TweetController extends Controller
      */
     public function index()
     {
-        //
+        return Tweet::with('user', 'user.profile')->paginate();
     }
 
     /**
